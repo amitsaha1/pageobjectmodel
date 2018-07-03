@@ -9,6 +9,7 @@ public class BaseClass  {
 	@AfterSuite
 	public void tearddown()
 	{
+		System.out.println("Closing browser");
 	 page.quit();	
 	}
 }
