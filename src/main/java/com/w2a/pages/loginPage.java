@@ -8,9 +8,9 @@ import com.w2a.basepackage.page;
 public class loginPage extends page {
 	public zohoapp doLogin(String username,String password)
 	{
-		typetext("username_xpath",username);
+		typetext("email_xpath",username);
 		typetext("password_xpath",password);
-		click("sign_xpath");
+		click("signin_xpath");
 		return new zohoapp();
 	}
 

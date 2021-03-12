@@ -126,7 +126,7 @@
 		</plugins>
 		<testResources>
 		 <testResource>
-		  <directory>src/test/resources/com/w2a/properties</directory>
+		  <directory>src/test/resources/com/oracle/properties</directory>
 		   <includes>
 		     <include>log4j.properties</include>
 		   </includes>	

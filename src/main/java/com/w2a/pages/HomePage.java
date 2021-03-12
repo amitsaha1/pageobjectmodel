@@ -9,14 +9,12 @@ public class HomePage extends page {
 	
 	public loginPage gotoLogin()
 	{
-		click("loginlink_xpath");
 	    return new loginPage();
 	}
 	
 	public void gotoSupport()
 	{
 		driver.findElement(By.xpath("//*[@class='zh-support']")).click();
-		//*[@id='block-system-main']/div[1]/div[1]/a
 	}
 	
 	public void gotoExploreMore()

@@ -1,7 +1,6 @@
 package com.w2a.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 import com.w2a.basepackage.page;
 import com.w2a.pages.crm.CRMHomepage;

@@ -36,7 +36,7 @@ public class page {
 	public static Properties OR =new Properties();
 	public static FileInputStream fis;
 	public static ExcelReader excel = new ExcelReader(
-			System.getProperty("user.dir") + "\\src\\test\\resources\\com\\w2a\\excel\\DataSheet.xlsx");
+			System.getProperty("user.dir") + "\\src\\test\\resources\\com\\oracle\\excel\\DataSheet.xlsx");
 	public static Logger log =Logger.getLogger("devpinoylogger");
 	public static WebDriverWait wait;
 	public ExtentReports rep=ExtentManager.getInstance();
@@ -48,7 +48,7 @@ public class page {
 	{
 		
 		try {
-			fis=new FileInputStream(System.getProperty("user.dir")+"\\src\\test\\resources\\com\\w2a\\properties\\config.properties");
+			fis=new FileInputStream(System.getProperty("user.dir")+"\\src\\test\\resources\\com\\oracle\\properties\\config.properties");
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -62,7 +62,7 @@ public class page {
 		log.debug("configfileloaded");
 		
 		try {
-			fis=new FileInputStream(System.getProperty("user.dir")+"\\src\\test\\resources\\com\\w2a\\properties\\or.properties");
+			fis=new FileInputStream(System.getProperty("user.dir")+"\\src\\test\\resources\\com\\oracle\\properties\\or.properties");
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -92,7 +92,7 @@ public class page {
 		} else if (config.getProperty("browser").equals("chrome")) {
 
 			System.setProperty("webdriver.chrome.driver",
-					System.getProperty("user.dir") + "\\src\\test\\resources\\com\\w2a\\executables\\chromedriver.exe");
+					System.getProperty("user.dir") + "\\src\\test\\resources\\com\\oracle\\executables\\chromedriver.exe");
 			driver = new ChromeDriver();
 			log.debug("Chrome Launched !!!");
 	

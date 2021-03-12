@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Page Object Model" >
+
+<listeners>
+      <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+      <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+      <listener class-name="com.w2a.listeners.customListeners"/>
+  </listeners>
+	<test name="LoginTest">
+		<classes>
+			<class name="com.w2.testcases.LoginTest" />
+			<class name="com.w2.testcases.Addtocart" />
+		</classes>
+	</test>
+</suite>
