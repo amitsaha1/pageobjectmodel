@@ -22,7 +22,6 @@ public class Addtocart extends Page {
 	@AfterSuite
 	public void tearddown()
 	{
-		System.out.println("Closing browser");
 	 	Page.quit();
 	}
 
