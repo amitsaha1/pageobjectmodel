@@ -5,9 +5,13 @@ import com.utilities.WebUtilities;
 import com.w2a.basepackage.Page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 public class RegistrationPage extends Page {
+    @FindBy(xpath="//button[@name='SubmitCreate']")
+    WebElement createaccount;
+
     WebUtilities util=new WebUtilities();
     Utilities ut=new Utilities();
     public String firstnametext=ut.random(10);
@@ -20,7 +24,7 @@ public class RegistrationPage extends Page {
 
     public void createaccount()
     {
-        WebElement createaccount=driver.findElement(By.xpath("//button[@name='SubmitCreate']"));
+//        WebElement createaccount=driver.findElement(By.xpath("//button[@name='SubmitCreate']"));
         util.elementclick(driver,createaccount);
         util.waitforpageload(driver);
         WebElement selectgender=driver.findElement(By.xpath("//input[@value='1' and @id='id_gender1']"));
@@ -61,6 +65,11 @@ public class RegistrationPage extends Page {
         WebElement getuserinfo=driver.findElement(By.xpath("//div[@class='header_user_info']/a[@class='account']/span"));
         String userdetails=util.gettext(driver,getuserinfo);
         Assert.assertTrue(userdetails.contains(firstnametext));
+
+    }
+
+    public void createaccountwithoutmail()
+    {
 
     }
 }
