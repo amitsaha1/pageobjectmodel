@@ -2,10 +2,10 @@ package com.w2a.pages;
 
 import org.openqa.selenium.By;
 
-import com.w2a.basepackage.page;
+import com.w2a.basepackage.Page;
 import com.w2a.pages.crm.CRMHomepage;
 
-public class zohoapp extends page{
+public class zohoapp extends Page{
 	
 	public void gotosalesIQ()
 	{

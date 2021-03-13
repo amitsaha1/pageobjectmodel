@@ -10,10 +10,10 @@ import org.testng.Reporter;
 
 import com.relevantcodes.extentreports.LogStatus;
 import com.utilities.Utilities;
-import com.w2a.basepackage.page;
+import com.w2a.basepackage.Page;
 
 
-public class customListeners extends page implements ITestListener {
+public class customListeners extends Page implements ITestListener {
 
 	
 

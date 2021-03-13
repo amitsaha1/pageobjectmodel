@@ -6,8 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.util.logging.Logger;
 
 public class WebUtilities {
 
@@ -59,5 +62,28 @@ public class WebUtilities {
 
     public String gettext(WebDriver driver, WebElement totalprice) {
         return totalprice.getText();
+    }
+
+    public void settext(WebDriver driver, WebElement ele,String text)
+    {
+        try{
+           ele.sendKeys(text);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void selectbyindex(WebDriver driver,WebElement ele,int index)
+    {
+        try {
+            Select sel = new Select(ele);
+            sel.selectByIndex(index);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 }

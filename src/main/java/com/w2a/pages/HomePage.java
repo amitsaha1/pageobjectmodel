@@ -1,8 +1,8 @@
 package com.w2a.pages;
 import org.openqa.selenium.*;
 
-import com.w2a.basepackage.page;
-public class HomePage extends page {
+import com.w2a.basepackage.Page;
+public class HomePage extends Page {
 
 	public void gotoSignUp()
 	{}

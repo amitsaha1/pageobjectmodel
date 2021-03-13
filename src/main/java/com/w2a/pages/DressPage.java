@@ -1,22 +1,27 @@
 package com.w2a.pages;
 
 import com.utilities.WebUtilities;
-import com.w2a.basepackage.page;
+import com.w2a.basepackage.Page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
-public class DressPage extends page {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+public class DressPage extends Page {
+   public String referencenumber;
     WebUtilities utils=new WebUtilities();
-    public void gotoSignUp() {
-    }
+//    public void gotoSignUp() {
+//    }
 
-    public loginPage gotoLogin() {
-        return new loginPage();
-    }
+//    public loginPage gotoLogin() {
+//        return new loginPage();
+//    }
 
     public void gotowomendresses() {
         driver.findElement(By.xpath("//a[@title='Women']")).click();
@@ -80,8 +85,28 @@ public class DressPage extends page {
 
         WebElement getsuccesmessage=driver.findElement(By.xpath("//p[@class='alert alert-success']"));
                 utils.verifyifelementispresent(driver,getsuccesmessage);
-                WebElement orderreferencenumber=driver.findElement(By.xpath("//div[@class='box order-confirmation']//br[3]"));
-                System.out.println(utils.gettext(driver,orderreferencenumber));
+                WebElement orderreferencenumber=driver.findElement(By.xpath("//div[@class='box order-confirmation']"));
+                referencenumber=getreferencenumber(utils.gettext(driver,orderreferencenumber));
     }
 
+    public String getreferencenumber(String s)
+    {
+        List<String> words = new ArrayList<>();
+        Pattern pattern = Pattern.compile("[A-Z][A-Z]+");
+        Matcher matcher = pattern.matcher(s);
+        while (matcher.find()) {
+            words.add(matcher.group());
+        }
+
+        System.out.println(words.get(4));
+        return words.get(4);
+    }
+
+    public void validateorderreferencenumber() {
+        WebElement myorders=driver.findElement(By.xpath("//a[@title='My orders']"));
+        myorders.click();
+        utils.waitforpageload(driver);
+        WebElement Orderid= driver.findElement(By.xpath("//table[@id='order-list']/tbody//tr[1]/td[1]/a"));
+        Assert.assertEquals(Orderid.getText().trim(),referencenumber);
+    }
 }

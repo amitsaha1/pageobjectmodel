@@ -9,7 +9,8 @@
   </listeners>
 	<test name="LoginTest">
 		<classes>
-			<class name="com.w2.testcases.LoginTest" />
+			<class name="com.w2.testcases.Registration" />
+<!--			<class name="com.w2.testcases.LoginTest" />-->
 			<class name="com.w2.testcases.Addtocart" />
 		</classes>
 	</test>

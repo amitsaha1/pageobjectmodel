@@ -28,7 +28,7 @@ import com.utilities.ExcelReader;
 import com.utilities.ExtentManager;
 import com.utilities.Utilities;
 
-public class page {
+public class Page {
 	
 	
 	public static WebDriver driver = null;
@@ -43,7 +43,7 @@ public class page {
 	public static ExtentTest test;
 	public static String browser=null;
 	public static topMenu menu;
-	public page() {
+	public Page() {
 	if(driver==null)
 	{
 		
