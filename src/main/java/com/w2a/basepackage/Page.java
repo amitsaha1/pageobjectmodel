@@ -42,7 +42,6 @@ public class Page {
 	public ExtentReports rep=ExtentManager.getInstance();
 	public static ExtentTest test;
 	public static String browser=null;
-	public static topMenu menu;
 	public Page() {
 	if(driver==null)
 	{
@@ -110,8 +109,7 @@ public class Page {
 			driver.get(config.getProperty("testsiteurl"));
 			log.debug("navigated to:"+config.getProperty("testsiteurl"));
 			driver.manage().window().maximize();
-			driver.manage().timeouts().implicitlyWait(Integer.parseInt(config.getProperty("implicitlywait")), TimeUnit.SECONDS);	
-		   menu=new topMenu(driver);
+			driver.manage().timeouts().implicitlyWait(Integer.parseInt(config.getProperty("implicitlywait")), TimeUnit.SECONDS);
 		}
 		  // page.menu.gotoAccounts();
 	}
