@@ -119,7 +119,7 @@
 				<configuration>
 					<suiteXmlFiles>
 						<!-- TestNG suite XML files -->
-						<suiteXmlFile>src/test/resources/com/w2a/runners/testng.xml</suiteXmlFile>
+						<suiteXmlFile>./testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
 			</plugin>
