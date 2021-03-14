@@ -3,66 +3,88 @@ package com.w2a.pages;
 import com.utilities.Utilities;
 import com.utilities.WebUtilities;
 import com.w2a.basepackage.Page;
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 public class RegistrationPage extends Page {
     @FindBy(xpath="//button[@name='SubmitCreate']")
     WebElement createaccount;
+    @FindBy(xpath="//input[@value='1' and @id='id_gender1']")
+    WebElement selectgender;
+    @FindBy(xpath="//input[@name='customer_firstname']")
+    WebElement firstname;
+    @FindBy(xpath="//input[@name='customer_lastname']")
+    WebElement secondname;
+    @FindBy(xpath="//select[@id='days']")
+    WebElement dobdays;
+    @FindBy(xpath="//select[@id='months']")
+    WebElement dobmonths;
+    @FindBy(xpath="//select[@id='years']")
+    WebElement dobyears;
+    @FindBy(xpath="//input[@name='address1']")
+    WebElement address;
+    @FindBy(xpath="//input[@id='city']")
+    WebElement city;
+    @FindBy(xpath="//select[@id='id_state']")
+    WebElement state;
+    @FindBy(xpath="//input[@id='phone_mobile']")
+    WebElement phone;
+    @FindBy(xpath="//p[@class='required postcode form-group']/input")
+    WebElement postalcode;
+    @FindBy(xpath="//input[@id='passwd']")
+    WebElement password;
+    @FindBy(xpath="//input[@id='alias']")
+    WebElement aliasaddress;
+    @FindBy(xpath="//button[@id='submitAccount']")
+    WebElement register;
+    @FindBy(xpath="//div[@class='header_user_info']/a[@class='account']/span")
+    WebElement getuserinfo;
+    @FindBy(xpath="//input[@id='email_create']")
+    WebElement emailidbox;
+    @FindBy(xpath="//div[@class='alert alert-danger']/ol/li")
+    WebElement invalidemailaddress;
 
     WebUtilities util=new WebUtilities();
     Utilities ut=new Utilities();
     public String firstnametext=ut.random(10);
 
+    public RegistrationPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+    }
+
     public void setmailId(String mailid)
     {
-        WebElement emailidbox=driver.findElement(By.xpath("//input[@id='email_create']"));
         util.settext(driver,emailidbox,mailid);
     }
 
     public void createaccount()
     {
-//        WebElement createaccount=driver.findElement(By.xpath("//button[@name='SubmitCreate']"));
         util.elementclick(driver,createaccount);
         util.waitforpageload(driver);
-        WebElement selectgender=driver.findElement(By.xpath("//input[@value='1' and @id='id_gender1']"));
-        selectgender.click();
-        WebElement firstname=driver.findElement(By.xpath("//input[@name='customer_firstname']"));
+        util.elementclick(driver,selectgender);
         util.settext(driver,firstname,firstnametext);
-        WebElement secondname=driver.findElement(By.xpath("//input[@name='customer_lastname']"));
         util.settext(driver,secondname,ut.random(7));
     }
 
     public void fillalldetails() {
-        WebElement dobdays=driver.findElement(By.xpath("//select[@id='days']"));
-        util.selectbyindex(driver,dobdays,20);
-        WebElement dobmonths=driver.findElement(By.xpath("//select[@id='months']"));
+       util.selectbyindex(driver,dobdays,20);
         util.selectbyindex(driver,dobmonths,3);
-        WebElement dobyears=driver.findElement(By.xpath("//select[@id='years']"));
         util.selectbyindex(driver,dobyears,20);
-        WebElement address=driver.findElement(By.xpath("//input[@name='address1']"));
         util.settext(driver,address,ut.random(15));
-        WebElement city=driver.findElement(By.xpath("//input[@id='city']"));
-        util.settext(driver,city,ut.random(15));
-        WebElement state=driver.findElement(By.xpath("//select[@id='id_state']"));
-        util.selectbyindex(driver,state,20);
-        WebElement phone=driver.findElement(By.xpath("//input[@id='phone_mobile']"));
-        util.settext(driver,phone,"9434041187");
-        WebElement postalcode=driver.findElement(By.xpath("//p[@class='required postcode form-group']/input"));
-        util.settext(driver,postalcode,"56010");
-        WebElement password=driver.findElement(By.xpath("//input[@id='passwd']"));
-        util.settext(driver,password,ut.random(15));
-        WebElement aliasaddress=driver.findElement(By.xpath("//input[@id='alias']"));
+       util.settext(driver,city,ut.random(15));
+       util.selectbyindex(driver,state,20);
+       util.settext(driver,phone,"9434041187");
+       util.settext(driver,postalcode,"56010");
+       util.settext(driver,password,ut.random(15));
         util.settext(driver,aliasaddress,ut.random(15));
     }
 
     public void registeruser()
     {
-        WebElement register=driver.findElement(By.xpath("//button[@id='submitAccount']"));
         util.elementclick(driver,register);
-        WebElement getuserinfo=driver.findElement(By.xpath("//div[@class='header_user_info']/a[@class='account']/span"));
         String userdetails=util.gettext(driver,getuserinfo);
         Assert.assertTrue(userdetails.contains(firstnametext));
 
@@ -70,6 +92,67 @@ public class RegistrationPage extends Page {
 
     public void createaccountwithoutmail()
     {
+        util.elementclick(driver,createaccount);
+        String str=util.gettext(driver,invalidemailaddress);
+        Assert.assertTrue(str.contains("Invalid email address."));
+    }
 
+    public void createaccountwithexistingemail() {
+        util.settext(driver,emailidbox,"sonyrocks.dgp@gmail.com");
+        util.elementclick(driver,createaccount);
+        String str=util.gettext(driver,invalidemailaddress);
+        Assert.assertTrue(str.contains("An account using this email address has already been registered. Please enter a valid password or request a new one."));
+    }
+
+    public void createaccountwithoutfirstname() {
+        util.pagerefresh(driver);
+        util.settext(driver,emailidbox,ut.random(10)+"@gmail.com");
+        util.elementclick(driver,createaccount);
+        util.waitforpageload(driver);
+        util.elementclick(driver,selectgender);
+        util.settext(driver,secondname,ut.random(7));
+        util.selectbyindex(driver,dobdays,20);
+        util.selectbyindex(driver,dobmonths,3);
+        util.selectbyindex(driver,dobyears,20);
+        util.settext(driver,address,ut.random(15));
+        util.settext(driver,city,ut.random(15));
+        util.selectbyindex(driver,state,20);
+        util.settext(driver,phone,"9434041187");
+        util.settext(driver,postalcode,"56010");
+        util.settext(driver,password,ut.random(15));
+        util.settext(driver,aliasaddress,ut.random(15));
+        util.elementclick(driver,register);
+        String str=util.gettext(driver,invalidemailaddress);
+        Assert.assertTrue(str.contains("firstname is required."));
+    }
+
+    public void createaccountwithoutlastname() {
+        util.settext(driver,firstname,firstnametext);
+        secondname.clear();
+        util.elementclick(driver,register);
+        String str=util.gettext(driver,invalidemailaddress);
+        Assert.assertTrue(str.contains("lastname is required."));
+    }
+    public void createaccountwithoutpassword() {
+        util.settext(driver,secondname,ut.random(7));
+        password.clear();
+        util.elementclick(driver,register);
+        String str=util.gettext(driver,invalidemailaddress);
+        Assert.assertTrue(str.contains("passwd is required."));
+    }
+    public void createaccountwithoutaddress() {
+        util.settext(driver,password,ut.random(7));
+        address.clear();
+        util.elementclick(driver,register);
+        String str=util.gettext(driver,invalidemailaddress);
+        Assert.assertTrue(str.contains("address1 is required."));
+    }
+    public void createaccountwithoutpostalcode() {
+        util.settext(driver,password,ut.random(7));
+        util.settext(driver,address,ut.random(7));
+        postalcode.clear();
+        util.elementclick(driver,register);
+        String str=util.gettext(driver,invalidemailaddress);
+        Assert.assertTrue(str.contains("The Zip/Postal code you've entered is invalid. It must follow this format: 00000"));
     }
 }

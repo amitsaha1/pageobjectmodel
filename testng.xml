@@ -8,8 +8,9 @@
   </listeners>
 	<test name="LoginTest">
 		<classes>
-			<class name="com.w2.testcases.Registration" />
-			<class name="com.w2.testcases.Addtocart" />
+<!--			<class name="com.w2.testcases.Registration" />-->
+<!--			<class name="com.w2.testcases.Addtocart" />-->
+			<class name="com.w2.testcases.RegistrationNegativeusecases" />
 		</classes>
 	</test>
 </suite>

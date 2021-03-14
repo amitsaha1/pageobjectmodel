@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class Registration extends Page{
 
-    RegistrationPage rp=new RegistrationPage();
+    RegistrationPage rp=new RegistrationPage(driver);
         Utilities util=new Utilities();
         String gmailid = util.random(15) + "@gmail.com";
 
@@ -19,11 +19,13 @@ public class Registration extends Page{
     @Test(priority = 1)
     public void fillalldetails()
     {
+
         rp.fillalldetails();
     }
     @Test(priority = 2)
     public void registeruser()
     {
+
         rp.registeruser();
     }
 
