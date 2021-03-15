@@ -3,6 +3,7 @@ package com.w2.testcases;
 import com.utilities.Utilities;
 import com.w2a.basepackage.Page;
 import com.w2a.pages.RegistrationPage;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.Test;
 
 public class RegistrationNegativeusecases extends Page {
@@ -30,7 +31,6 @@ public class RegistrationNegativeusecases extends Page {
     @Test(priority=7)
     public void createaccountwithoutlastname()
     {
-        rp.setmailId(gmailid);
         rp.createaccountwithoutlastname();
     }
     @Test(priority=8)
@@ -47,6 +47,12 @@ public class RegistrationNegativeusecases extends Page {
     public void createaccountwithoutpostalcode()
     {
         rp.createaccountwithoutpostalcode();
+    }
+
+    @AfterSuite
+    public void teardown()
+    {
+        quit();
     }
 
 }
